@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+// @import 'bootstrap/scss/bootstrap';
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.btn-orange {
+  background-color: #ff7900;
+  color: white;
+}
+
+.btn-orange:hover {
+  background-color: #ca5e00;
+  color: white;
+}
