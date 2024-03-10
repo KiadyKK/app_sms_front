@@ -1,0 +1,130 @@
+<div class="container">
+  <!-- <form [formGroup]="form" (ngSubmit)="onPost()">
+    <ng-select class="w-25" formControlName="selectedFruit">
+      <ng-option *ngFor="let fruit of fruits" [value]="fruit.id">{{
+        fruit.name
+      }}</ng-option>
+    </ng-select>
+  </form> -->
+
+  <form (ngSubmit)="onSubmit()">
+    <table
+      class="table table-sm table-striped table-bordered"
+      aria-describedby="mydesc"
+    >
+      <thead>
+        <tr>
+          <th scope="col">
+            <button
+              type="button"
+              class="btn btn-success btn-sm"
+              (click)="addRow()"
+            >
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </th>
+          <th scope="col">Zone</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Email</th>
+          <th scope="col">Tel</th>
+          <th scope="col">Trigramme</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr [formGroup]="form" *ngIf="addMode">
+          <td></td>
+          <td class="zone-edit">
+            <ng-select
+              formControlName="zone"
+              class="search-select"
+              [ngClass]="{
+                'is-invalid': form.controls.zone.errors
+              }"
+            >
+              <ng-option *ngFor="let fruit of fruits" [value]="fruit">{{
+                fruit.name
+              }}</ng-option>
+            </ng-select>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="nom"
+              [ngClass]="{ 'is-invalid': form.controls.nom.errors }"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="prenom"
+              [ngClass]="{ 'is-invalid': form.controls.prenom.errors }"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': form.controls.email.errors }"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="tel"
+              [ngClass]="{ 'is-invalid': form.controls.tel.errors }"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="tri"
+              [ngClass]="{ 'is-invalid': form.controls.tri.errors }"
+            />
+          </td>
+          <td class="d-flex justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-primary btn-sm"
+              [disabled]="!form.valid"
+            >
+              <i class="bi bi-check-lg"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-dark btn-sm ms-2"
+              (click)="reset()"
+            >
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngFor="let item of users">
+          <td class="text-center">{{ item.id }}</td>
+          <td>{{ item.nom }}</td>
+          <td>{{ item.prenom }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.tel }}</td>
+          <td>{{ item.tri }}</td>
+          <td class="text-center">
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="remove(item.id!)"
+            >
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

@@ -23,9 +23,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       req = req.clone({
         withCredentials: true,
         headers: req.headers
-          .set('utilisateur', this.storageService.getItem('utilisateur'))
-          .set('user_id', this.storageService.getItem('user_id'))
-          .set('trigramme', this.storageService.getItem('trigramme'))
+          .set('id', this.storageService.getItem('id'))
+          .set('tri', this.storageService.getItem('tri'))
           .set('Authorization', this.storageService.getItem('authorization')),
       });
 

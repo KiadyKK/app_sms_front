@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     if (this.storageService.getItem("authorization")) {
       return true;
     }
-    alert('Veuillez vous reconnecter svp!')
+    // alert('Veuillez vous reconnecter svp!')
 
     this.router.navigate(['/login']);
     return false;

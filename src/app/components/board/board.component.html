@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="input-group input-group-sm mb-3 ms-auto search">
+    <input
+      class="form-control"
+      placeholder="dd/mm/yyyy"
+      name="date"
+      [(ngModel)]="date"
+      ngbDatepicker
+      #d="ngbDatepicker"
+    />
+    <button
+      class="btn btn-outline-secondary bi bi-calendar3"
+      (click)="d.toggle()"
+      type="button"
+    ></button>
+  </div>
+
+  <pre>Model: {{ date | json }}</pre>
+</div>

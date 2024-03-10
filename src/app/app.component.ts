@@ -8,8 +8,9 @@ import { StorageService } from './services/storage/storage.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  trigramme: string;
+  tri: string;
   isLoggedIn: boolean;
+  role: number
 
   constructor(
     private storageService: StorageService,
@@ -18,10 +19,11 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.getItem('authorization');
+    this.role = +this.storageService.getItem('role');
 
     if (this.isLoggedIn) {
-      const trigramme = this.storageService.getItem('trigramme');
-      this.trigramme = trigramme;
+      const tri = this.storageService.getItem('tri');
+      this.tri = tri;
     }
 
     this.bnIdle.startWatching(3600).subscribe((isTimedOut: boolean) => {

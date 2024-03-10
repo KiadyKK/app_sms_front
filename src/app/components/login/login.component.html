@@ -13,14 +13,14 @@
         <input
           type="text"
           class="form-control"
-          name="trigramme"
-          [(ngModel)]="form.trigramme"
+          name="tri"
+          [(ngModel)]="form.tri"
           required
           placeholder="Trigramme*"
-          #trigramme="ngModel"
-          [ngClass]="{ 'is-invalid': f.submitted && trigramme.errors }"
+          #tri="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && tri.errors }"
         />
-        <div *ngIf="trigramme.errors && f.submitted" class="invalid-feedback">
+        <div *ngIf="tri.errors && f.submitted" class="invalid-feedback">
           Trigramme obligatoire !
         </div>
       </div>
@@ -31,15 +31,15 @@
         <input
           type="password"
           class="form-control"
-          name="password"
-          [(ngModel)]="form.password"
+          name="mdp"
+          [(ngModel)]="form.mdp"
           required
           placeholder="Mot de passe*"
-          #password="ngModel"
-          [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+          #mdp="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && mdp.errors }"
         />
-        <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
-          <div *ngIf="password.errors['required']">
+        <div *ngIf="mdp.errors && f.submitted" class="invalid-feedback">
+          <div *ngIf="mdp.errors['required']">
             Mot de passe obligatoire !
           </div>
         </div>

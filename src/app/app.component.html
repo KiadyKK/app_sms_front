@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark py-0 fixed-top">
     <img
       src="assets/images/logo.gif"
-      class="my-2 ms-2 me-2"
+      class="mx-2"
       alt="Logo Orange"
       title="Logo Orange"
       width="35px"
@@ -10,24 +10,48 @@
     />
     <h5 class="text-light d-flex align-items-center mb-0">APP SMS 833</h5>
 
-    <ul class="navbar-nav mx-auto" *ngIf="!isLoggedIn">
+    <ul class="navbar-nav mx-auto link-group" *ngIf="isLoggedIn">
       <li class="nav-item">
         <a
           class="nav-link lien"
-          routerLink="verification"
-          class="sidenav-nav-link"
+          routerLink="board"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
-          >Vérification</a
+          >Tableau de bord</a
+        >
+      </li>
+      <li class="nav-item ms-3">
+        <a
+          class="nav-link lien"
+          routerLink="rdz"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >RDZ</a
+        >
+      </li>
+      <li class="nav-item ms-3">
+        <a
+          class="nav-link lien"
+          routerLink="history"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Historique</a
+        >
+      </li>
+      <li class="nav-item ms-3" *ngIf="role === 1">
+        <a
+          class="nav-link lien"
+          routerLink="user"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Utilisateur</a
         >
       </li>
     </ul>
 
-    <ul class="navbar-nav ms-auto" *ngIf="!isLoggedIn">
+    <ul class="navbar-nav ms-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{
-          trigramme
-        }}</a>
+        <a href="/" class="nav-link" routerLink="">{{ tri }}</a>
       </li>
       <li class="nav-item d-flex align-items-center me-2">
         <a href class="btn btn-outline-primary btn-sm" (click)="logout()"

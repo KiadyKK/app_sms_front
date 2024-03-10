@@ -1,0 +1,15 @@
+* {
+  font-size: 14px;
+}
+
+.search {
+  max-width: 200px !important;
+}
+
+th {
+  text-align: center;
+}
+
+form:-internal-is-html {
+  display: block !important;
+}

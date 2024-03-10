@@ -4,6 +4,7 @@
 // @import 'bootstrap/scss/bootstrap';
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 .btn-orange {
   background-color: #ff7900;
@@ -13,4 +14,18 @@
 .btn-orange:hover {
   background-color: #ca5e00;
   color: white;
+}
+
+.ng-select .ng-select-container {
+  min-height: 31px !important;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 31px;
+}
+
+.search-select.is-invalid {
+  .ng-select-container {
+    border-color: #dc3545 !important;
+  }
 }

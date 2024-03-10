@@ -11,8 +11,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class LoginComponent implements OnInit {
   form: Login = {
-    trigramme: '',
-    password: '',
+    tri: '',
+    mdp: '',
   };
   isLoginFailed = false;
   isLoggedIn: boolean = false;
@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit {
           this.storageService.saveUser(data);
           location.reload();
         } else {
-          this.errorMessage = data.permission;
+          this.errorMessage = 'Error';
           this.isLoginFailed = true;
         }
       },
       error: (err: any) => {
-        this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.errorMessage = err.error;
       },
     });
   }

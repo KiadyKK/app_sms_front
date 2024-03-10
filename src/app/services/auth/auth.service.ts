@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { Login } from 'src/app/models/login/login.model';
 import { environment } from 'src/environments/environment.development';
 
-const apiURL = environment.apiUrl;
-const AUTH_API = apiURL + 'auth/';
+const apiURL = environment.apiUrl + 'user/';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +20,6 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(data: Login): Observable<any> {
-    console.log(data);
-    return this.http.post(AUTH_API + 'signin', data, httpOptions);
+    return this.http.post(apiURL + 'login', data, httpOptions);
   }
 }

@@ -1,4 +1,4 @@
 export class Login {
-  trigramme: string;
-  password: string;
+  tri: string;
+  mdp: string;
 }
