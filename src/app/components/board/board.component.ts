@@ -1,4 +1,6 @@
-import { Component, Injectable } from '@angular/core';
+import { Dwh } from './../../models/dwh/dwh.model';
+import { DwhService } from './../../services/dwh/dwh.service';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {
   NgbCalendar,
   NgbDateAdapter,
@@ -63,8 +65,19 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit {
   date: string;
+  dwhs: Dwh[] = [];
 
-  constructor() {}
+  constructor(private dwhService: DwhService) {}
+
+  ngOnInit(): void {}
+
+  getDwh(): void {
+    this.dwhService.getAll().subscribe({
+      next: (data: any) => {
+        this.dwhs = data;
+      },
+    });
+  }
 }

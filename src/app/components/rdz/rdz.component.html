@@ -1,11 +1,15 @@
 <div class="container">
-  <!-- <form [formGroup]="form" (ngSubmit)="onPost()">
-    <ng-select class="w-25" formControlName="selectedFruit">
-      <ng-option *ngFor="let fruit of fruits" [value]="fruit.id">{{
-        fruit.name
-      }}</ng-option>
-    </ng-select>
-  </form> -->
+  <div class="input-group input-group-sm mb-3 ms-auto search">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nom"
+      [(ngModel)]="nom"
+    />
+    <button class="btn btn-primary" type="button" (click)="getRdz()">
+      <i class="bi bi-search"></i>
+    </button>
+  </div>
 
   <form (ngSubmit)="onSubmit()">
     <table
@@ -44,8 +48,8 @@
                 'is-invalid': form.controls.zone.errors
               }"
             >
-              <ng-option *ngFor="let fruit of fruits" [value]="fruit">{{
-                fruit.name
+              <ng-option *ngFor="let zone of zones" [value]="zone">{{
+                zone.name
               }}</ng-option>
             </ng-select>
           </td>
@@ -107,18 +111,19 @@
           </td>
         </tr>
 
-        <tr *ngFor="let item of users">
-          <td class="text-center">{{ item.id }}</td>
-          <td>{{ item.nom }}</td>
-          <td>{{ item.prenom }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.tel }}</td>
-          <td>{{ item.tri }}</td>
+        <tr *ngFor="let rdz of rdzs">
+          <td class="text-center">{{ rdz.id }}</td>
+          <td>{{ rdz.zone.name }}</td>
+          <td>{{ rdz.nom }}</td>
+          <td>{{ rdz.prenom }}</td>
+          <td>{{ rdz.email }}</td>
+          <td>{{ rdz.tel }}</td>
+          <td>{{ rdz.tri }}</td>
           <td class="text-center">
             <button
               type="button"
               class="btn btn-danger btn-sm"
-              (click)="remove(item.id!)"
+              (click)="remove(rdz.id!)"
             >
               <i class="bi bi-trash-fill"></i>
             </button>
