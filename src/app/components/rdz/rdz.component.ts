@@ -1,13 +1,14 @@
+import { DwhService } from './../../services/dwh/dwh.service';
 import { Rdz } from 'src/app/models/rdz/rdz.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user/user.model';
 import { RdzService } from 'src/app/services/rdz/rdz.service';
 import { Zone } from './../../models/zone/zone.model';
-import { ZoneService } from './../../services/zone/zone.service';
 
 const createFormUser = () => ({
   zone: new FormControl<any>('', [Validators.required]),
+  idZone: new FormControl<string>(''),
   nom: new FormControl<string>('', [Validators.required]),
   prenom: new FormControl<string>('', [Validators.required]),
   email: new FormControl<string>('', [Validators.email]),
@@ -33,10 +34,7 @@ export class RdzComponent implements OnInit {
 
   form = new FormGroup(createFormUser());
 
-  constructor(
-    private zoneService: ZoneService,
-    private rdzService: RdzService
-  ) {}
+  constructor(private dwhService: DwhService, private rdzService: RdzService) {}
 
   ngOnInit(): void {
     this.getZone();
@@ -44,7 +42,7 @@ export class RdzComponent implements OnInit {
   }
 
   getZone(): void {
-    this.zoneService.getAll('').subscribe({
+    this.dwhService.getAllZone().subscribe({
       next: (data: any) => {
         this.zones = data;
       },
@@ -64,7 +62,10 @@ export class RdzComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.form.value.zone = this.form.value.zone.id;
+    const idZone = this.form.value.zone.id;
+    const zone = this.form.value.zone.name;
+    this.form.value.zone = zone;
+    this.form.value.idZone = idZone;
     this.rdzService.addRdz(this.form.value).subscribe({
       next: (data: any) => {
         this.reset();

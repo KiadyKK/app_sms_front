@@ -2,7 +2,8 @@ import { Zone } from '../zone/zone.model';
 
 export class Rdz {
   id: number;
-  zone: Zone;
+  idZone: number;
+  zone: string;
   nom: string;
   prenom: string;
   email: string;

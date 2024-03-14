@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user/user.service';
 const createFormUser = () => ({
   nom: new FormControl<string>('', [Validators.required]),
   prenom: new FormControl<string>('', [Validators.required]),
-  email: new FormControl<string>('', [Validators.email]),
+  email: new FormControl<string>('', [Validators.email, Validators.required]),
   tel: new FormControl<string>(''),
   tri: new FormControl<string>('', [
     Validators.minLength(3),

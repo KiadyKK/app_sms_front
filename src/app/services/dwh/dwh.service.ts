@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
-const apiURL = environment.apiUrl + 'dwh';
+const apiURL = environment.apiUrl + 'kpi';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,5 +19,13 @@ export class DwhService {
 
   getAll(): Observable<any> {
     return this.http.get(apiURL, httpOptions);
+  }
+
+  sendSms(): Observable<any> {
+    return this.http.get(apiURL + '/send', httpOptions);
+  }
+
+  getAllZone(): Observable<any> {
+    return this.http.get(apiURL + '/zone', httpOptions);
   }
 }

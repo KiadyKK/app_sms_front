@@ -1,18 +1,31 @@
 <div class="container">
-  <div class="input-group input-group-sm mb-3 ms-auto search">
-    <input
-      class="form-control"
-      placeholder="dd/mm/yyyy"
-      name="date"
-      [(ngModel)]="date"
-      ngbDatepicker
-      #d="ngbDatepicker"
-    />
-    <button
-      class="btn btn-outline-secondary bi bi-calendar3"
-      (click)="d.toggle()"
-      type="button"
-    ></button>
+  <div class="d-flex">
+    <div class="ms-auto">
+      <button class="btn btn-outline-secondary btn-sm" (click)="getKpi()">
+        <i class="bi bi-arrow-repeat"></i>
+      </button>
+    </div>
+
+    <div class="input-group input-group-sm mb-3 ms-2 search">
+      <input
+        class="form-control"
+        placeholder="dd/mm/yyyy"
+        name="date"
+        [(ngModel)]="date"
+        (ngModelChange)="onChangeDate()"
+        ngbDatepicker
+        #d="ngbDatepicker"
+      />
+      <button
+        class="btn btn-outline-secondary bi bi-calendar3"
+        (click)="d.toggle()"
+        type="button"
+      ></button>
+    </div>
+
+    <div class="ms-2">
+      <button class="btn btn-orange btn-sm">Envoyer</button>
+    </div>
   </div>
 
   <pre>Model: {{ date | json }}</pre>
@@ -23,22 +36,47 @@
   >
     <thead>
       <tr>
-        <th scope="col">id</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Prénom</th>
-        <th scope="col">Email</th>
-        <th scope="col">Tel</th>
-        <th scope="col">Trigramme</th>
-        <th scope="col">Action</th>
+        <th scope="col">MM/YYYY</th>
+        <th scope="col">Jour</th>
+        <th scope="col">Zone</th>
+        <th scope="col">Parc</th>
+        <th scope="col">Activation</th>
+        <th scope="col">Cumul Act</th>
+        <th scope="col">Nbr Rec</th>
+        <th scope="col">Cumul nbr Rec</th>
+        <th scope="col">Montant Rec</th>
+        <th scope="col">Cumul Montant Rec</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let dwh of dwhs">
-        <td class="text-center">{{ dwh.id }}</td>
-        <td>{{ dwh }}</td>
-        <td>{{ dwh }}</td>
+      <tr
+        *ngFor="
+          let kpi of kpis
+            | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize
+        "
+      >
+        <td class="text-center">{{ kpi.mois_annee }}</td>
+        <td class="text-center">{{ kpi.jour }}</td>
+        <td>{{ kpi.zone }}</td>
+        <td class="text-end">{{ kpi.parc }}</td>
+        <td class="text-end">{{ kpi.activation }}</td>
+        <td class="text-end">{{ kpi.cumul_activation }}</td>
+        <td class="text-end">{{ kpi.nb_rec }}</td>
+        <td class="text-end">{{ kpi.cumul_nb_rec }}</td>
+        <td class="text-end">{{ kpi.mtt_rec }}</td>
+        <td class="text-end">{{ kpi.cumul_mtt_rec }}</td>
       </tr>
     </tbody>
   </table>
+
+  <div class="d-flex justify-content-center">
+    <ngb-pagination
+      [collectionSize]="kpis.length"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [boundaryLinks]="true"
+      [maxSize]="5"
+    ></ngb-pagination>
+  </div>
 </div>

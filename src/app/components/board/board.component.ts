@@ -1,12 +1,11 @@
-import { Dwh } from './../../models/dwh/dwh.model';
-import { DwhService } from './../../services/dwh/dwh.service';
 import { Component, Injectable, OnInit } from '@angular/core';
 import {
-  NgbCalendar,
   NgbDateAdapter,
   NgbDateParserFormatter,
   NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
+import { Kpi } from './../../models/kpi/kpi.model';
+import { DwhService } from './../../services/dwh/dwh.service';
 
 /**
  * This Service handles how the date is represented in scripts i.e. ngModel.
@@ -67,16 +66,25 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 })
 export class BoardComponent implements OnInit {
   date: string;
-  dwhs: Dwh[] = [];
+  kpis: Kpi[] = [];
+
+  page = 1;
+  pageSize = 7;
 
   constructor(private dwhService: DwhService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getKpi();
+  }
 
-  getDwh(): void {
+  onChangeDate(): void {
+    console.log(this.date);
+  }
+
+  getKpi(): void {
     this.dwhService.getAll().subscribe({
       next: (data: any) => {
-        this.dwhs = data;
+        this.kpis = data;
       },
     });
   }
