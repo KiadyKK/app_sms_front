@@ -12,16 +12,23 @@ import {
   NgbDatepickerModule,
   NgbModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
-import { BoardComponent, CustomAdapter, CustomDateParserFormatter } from './components/board/board.component';
+import {
+  BoardComponent,
+  CustomAdapter,
+  CustomDateParserFormatter,
+} from './components/board/board.component';
 import { RdzComponent } from './components/rdz/rdz.component';
 import { UserComponent } from './components/user/user.component';
 import { HistoryComponent } from './components/history/history.component';
 import { JsonPipe } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { spinnerInterceptorProviders } from './helpers/spinner.interceptor';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +38,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RdzComponent,
     UserComponent,
     HistoryComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,10 +52,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgbAlertModule,
     FormsModule,
     JsonPipe,
-    NgSelectModule
+    NgSelectModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     authInterceptorProviders,
+    spinnerInterceptorProviders,
     BnNgIdleService,
     { provide: NgbDateAdapter, useClass: CustomAdapter },
     { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },

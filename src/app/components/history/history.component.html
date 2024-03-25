@@ -1,1 +1,52 @@
-<p>history works!</p>
+<div class="container">
+  <div class="d-flex">
+    <div class="input-group input-group-sm mb-3 ms-auto search">
+      <input
+        class="form-control"
+        placeholder="dd/mm/yyyy"
+        name="date"
+        [(ngModel)]="date"
+        (ngModelChange)="getHistoric()"
+        ngbDatepicker
+        #d="ngbDatepicker"
+        readonly
+      />
+      <button
+        class="btn btn-outline-secondary bi bi-calendar3"
+        (click)="d.toggle()"
+        type="button"
+      ></button>
+    </div>
+  </div>
+
+  <table
+    class="table table-sm table-striped table-bordered"
+    aria-describedby="mydesc"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Date d'envoie</th>
+        <th scope="col">Date des données</th>
+        <th scope="col">Utilisateur</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let historic of historics">
+        <td class="text-center">{{ historic.sendDate }}</td>
+        <td class="text-center">{{ historic.kpiDate }}</td>
+        <td class="text-center">{{ historic.triUser }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <div class="d-flex justify-content-center">
+    <ngb-pagination
+      [collectionSize]="kpis.length"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [boundaryLinks]="true"
+      [maxSize]="5"
+    ></ngb-pagination>
+  </div> -->
+</div>

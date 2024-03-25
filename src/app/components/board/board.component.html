@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex">
     <div class="ms-auto">
-      <button class="btn btn-outline-secondary btn-sm" (click)="getKpi()">
+      <button class="btn btn-outline-secondary btn-sm" (click)="getKpiDwh()">
         <i class="bi bi-arrow-repeat"></i>
       </button>
     </div>
@@ -12,9 +12,10 @@
         placeholder="dd/mm/yyyy"
         name="date"
         [(ngModel)]="date"
-        (ngModelChange)="onChangeDate()"
+        (ngModelChange)="getKpi()"
         ngbDatepicker
         #d="ngbDatepicker"
+        readonly
       />
       <button
         class="btn btn-outline-secondary bi bi-calendar3"
@@ -24,11 +25,9 @@
     </div>
 
     <div class="ms-2">
-      <button class="btn btn-orange btn-sm">Envoyer</button>
+      <button class="btn btn-orange btn-sm" (click)="sendSms()">Envoyer</button>
     </div>
   </div>
-
-  <pre>Model: {{ date | json }}</pre>
 
   <table
     class="table table-sm table-striped table-bordered"
@@ -50,33 +49,24 @@
     </thead>
 
     <tbody>
-      <tr
-        *ngFor="
-          let kpi of kpis
-            | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize
-        "
-      >
+      <tr *ngFor="let kpi of kpis">
         <td class="text-center">{{ kpi.mois_annee }}</td>
         <td class="text-center">{{ kpi.jour }}</td>
         <td>{{ kpi.zone }}</td>
-        <td class="text-end">{{ kpi.parc }}</td>
-        <td class="text-end">{{ kpi.activation }}</td>
-        <td class="text-end">{{ kpi.cumul_activation }}</td>
-        <td class="text-end">{{ kpi.nb_rec }}</td>
-        <td class="text-end">{{ kpi.cumul_nb_rec }}</td>
-        <td class="text-end">{{ kpi.mtt_rec }}</td>
-        <td class="text-end">{{ kpi.cumul_mtt_rec }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.parc) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.activation) }}</td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(kpi.cumul_activation) }}
+        </td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.nb_rec) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cumul_nb_rec) }}</td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(kpi.mtt_rec.toFixed(2)) }}
+        </td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(kpi.cumul_mtt_rec.toFixed(2)) }}
+        </td>
       </tr>
     </tbody>
   </table>
-
-  <div class="d-flex justify-content-center">
-    <ngb-pagination
-      [collectionSize]="kpis.length"
-      [(page)]="page"
-      [pageSize]="pageSize"
-      [boundaryLinks]="true"
-      [maxSize]="5"
-    ></ngb-pagination>
-  </div>
 </div>

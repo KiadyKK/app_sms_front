@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://kpiperf-test.intranet.oma/api/',
+  // apiUrl: 'http://localhost:8080/',
+  // apiUrl: 'https://kpiperf.intranet.oma/api/',
+  apiUrl: '/',
 };

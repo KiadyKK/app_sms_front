@@ -59,33 +59,70 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   }
 }
 
+const getDate = (): string => {
+  const now = new Date();
+  const day = now.getDate() - 1;
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  return day + '-' + month + '-' + year;
+};
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
-  date: string;
+  date: string = '';
   kpis: Kpi[] = [];
-
-  page = 1;
-  pageSize = 7;
+  source: string = 'app';
 
   constructor(private dwhService: DwhService) {}
 
   ngOnInit(): void {
+    this.date = getDate();
     this.getKpi();
   }
 
-  onChangeDate(): void {
-    console.log(this.date);
-  }
-
   getKpi(): void {
-    this.dwhService.getAll().subscribe({
+    this.source = 'app';
+    const d: string[] = this.date.split('-');
+    const month = d[1].length === 1 ? '0' + d[1] : d[1];
+    const day = d[0].length === 1 ? '0' + d[0] : d[0];
+    const jour: string = d[2] + '-' + month + '-' + day;
+    this.dwhService.getAll(jour).subscribe({
       next: (data: any) => {
         this.kpis = data;
       },
     });
+  }
+
+  getKpiDwh(): void {
+    this.source = 'dwh';
+    const d: string[] = this.date.split('-');
+    const month = d[1].length === 1 ? '0' + d[1] : d[1];
+    const day = d[0].length === 1 ? '0' + d[0] : d[0];
+    const jour: string = d[2] + '-' + month + '-' + day;
+    this.dwhService.getAllDwh(jour).subscribe({
+      next: (data: any) => {
+        this.kpis = data;
+      },
+    });
+  }
+
+  sendSms(): void {
+    const d: string[] = this.date.split('-');
+    const month = d[1].length === 1 ? '0' + d[1] : d[1];
+    const day = d[0].length === 1 ? '0' + d[0] : d[0];
+    const jour: string = d[2] + '-' + month + '-' + day;
+    this.dwhService.sendSms(jour, this.source).subscribe({
+      next: (data: any) => {},
+    });
+  }
+
+  floatNumberWithSpaces(x: number | string): string {
+    let parts = x.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return parts.join('.');
   }
 }

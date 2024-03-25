@@ -17,15 +17,26 @@ const httpOptions = {
 export class DwhService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any> {
-    return this.http.get(apiURL, httpOptions);
+  getAll(date: string): Observable<any> {
+    return this.http.get(apiURL + `?date=${date}`, httpOptions);
   }
 
-  sendSms(): Observable<any> {
-    return this.http.get(apiURL + '/send', httpOptions);
+  getAllDwh(date: string): Observable<any> {
+    return this.http.get(apiURL + `/dwh?date=${date}`, httpOptions);
+  }
+
+  sendSms(date: string, source: string): Observable<any> {
+    return this.http.get(
+      apiURL + `/send?date=${date}&source=${source}`,
+      httpOptions
+    );
   }
 
   getAllZone(): Observable<any> {
     return this.http.get(apiURL + '/zone', httpOptions);
+  }
+
+  getHistoric(date: string): Observable<any> {
+    return this.http.get(apiURL + `/historic?date=${date}`, httpOptions);
   }
 }
