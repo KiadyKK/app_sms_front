@@ -38,11 +38,13 @@
         <th scope="col">MM/YYYY</th>
         <th scope="col">Jour</th>
         <th scope="col">Zone</th>
+        <th scope="col">Taux CB(%)</th>
+        <th scope="col">Charged base</th>
         <th scope="col">Parc</th>
         <th scope="col">Activation</th>
         <th scope="col">Cumul Act</th>
-        <th scope="col">Nbr Rec</th>
-        <th scope="col">Cumul nbr Rec</th>
+        <!-- <th scope="col">Nbr Rec</th>
+        <th scope="col">Cumul nbr Rec</th> -->
         <th scope="col">Montant Rec</th>
         <th scope="col">Cumul Montant Rec</th>
       </tr>
@@ -58,8 +60,8 @@
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.cumul_activation) }}
         </td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.nb_rec) }}</td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.cumul_nb_rec) }}</td>
+        <!-- <td class="text-end">{{ floatNumberWithSpaces(kpi.nb_rec) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cumul_nb_rec) }}</td> -->
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.mtt_rec.toFixed(2)) }}
         </td>
