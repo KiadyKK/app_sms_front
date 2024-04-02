@@ -125,6 +125,12 @@ export class BoardComponent implements OnInit {
   getTotatCumulMttRec(): number {
     return this.kpis.filter(item => item.cumul_mtt_rec).reduce((total, item) => total + item.cumul_mtt_rec, 0);
   }
+  getTotatCb7Jours(): number {
+    return this.kpis.filter(item => item.cb_7jours).reduce((total, item) => total + item.cb_7jours, 0);
+  }
+  getTotatCb30Jours(): number {
+    return this.kpis.filter(item => item.cb_30jours).reduce((total, item) => total + item.cb_30jours, 0);
+  }
   sendSms(): void {
     const d: string[] = this.date.split('-');
     const month = d[1].length === 1 ? '0' + d[1] : d[1];

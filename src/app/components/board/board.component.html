@@ -26,8 +26,8 @@
         <th scope="col">Parc</th>
         <th scope="col">Activation</th>
         <th scope="col">Cumul Act</th>
-        <th scope="col">Nbr Rec</th>
-        <th scope="col">Cumul nbr Rec</th>
+        <th scope="col">Cb_7jours</th>
+        <th scope="col">cb_30jours</th>
         <th scope="col">Montant Rec</th>
         <th scope="col">Cumul Montant Rec</th>
       </tr>
@@ -43,8 +43,8 @@
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.cumul_activation) }}
         </td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.nb_rec) }}</td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.cumul_nb_rec) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_7jours) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30jours) }}</td>
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.mtt_rec.toFixed(2)) }}
         </td>
@@ -59,8 +59,8 @@
         <td class="text-end">{{ floatNumberWithSpaces(getTotalParc())}}</td>
         <td class="text-end">{{floatNumberWithSpaces(getTotalActivation())}}</td>
         <td class="text-end">{{floatNumberWithSpaces(getTotatCumulActivation())}}</td>
-        <td class="text-end"></td>
-        <td class="text-end"></td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotatCb7Jours())}}</td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotatCb30Jours())}}</td>
         <td class="text-end">{{floatNumberWithSpaces(getTotatMttRec().toFixed(2))}}</td>
         <td class="text-end">{{floatNumberWithSpaces(getTotatCumulMttRec().toFixed(2))}}</td>
       </tr>
