@@ -7,21 +7,9 @@
     </div>
 
     <div class="input-group input-group-sm mb-3 ms-2 search">
-      <input
-        class="form-control"
-        placeholder="dd/mm/yyyy"
-        name="date"
-        [(ngModel)]="date"
-        (ngModelChange)="getKpi()"
-        ngbDatepicker
-        #d="ngbDatepicker"
-        readonly
-      />
-      <button
-        class="btn btn-outline-secondary bi bi-calendar3"
-        (click)="d.toggle()"
-        type="button"
-      ></button>
+      <input class="form-control" placeholder="dd/mm/yyyy" name="date" [(ngModel)]="date" (ngModelChange)="getKpi()"
+        ngbDatepicker #d="ngbDatepicker" readonly />
+      <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
     </div>
 
     <div class="ms-2">
@@ -29,10 +17,7 @@
     </div>
   </div>
 
-  <table
-    class="table table-sm table-striped table-bordered"
-    aria-describedby="mydesc"
-  >
+  <table class="table table-sm table-striped table-bordered" aria-describedby="mydesc">
     <thead>
       <tr>
         <th scope="col">MM/YYYY</th>
@@ -70,6 +55,18 @@
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.cumul_mtt_rec.toFixed(2)) }}
         </td>
+      </tr>
+      <tr>
+        <td class="text-end">Somme</td>
+        <td></td>
+        <td></td>
+        <td class="text-end">{{ floatNumberWithSpaces(getTotalParc())}}</td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotalActivation())}}</td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotatCumulActivation())}}</td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotatCb7Jours())}}</td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotatCb30Jours())}}</td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotatMttRec().toFixed(2))}}</td>
+        <td class="text-end">{{floatNumberWithSpaces(getTotatCumulMttRec().toFixed(2))}}</td>
       </tr>
     </tbody>
   </table>
