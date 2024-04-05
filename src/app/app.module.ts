@@ -29,8 +29,6 @@ import { JsonPipe } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { spinnerInterceptorProviders } from './helpers/spinner.interceptor';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { DataTableComponent } from './components/data-table/data-table.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +37,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     RdzComponent,
     UserComponent,
     HistoryComponent,
-    SpinnerComponent,
-    DataTableComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -66,4 +63,4 @@ import { DataTableComponent } from './components/data-table/data-table.component
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
