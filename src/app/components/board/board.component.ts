@@ -75,9 +75,8 @@ const getDate = (): string => {
 export class BoardComponent implements OnInit {
   date: string = '';
   kpis: Kpi[] = [];
-  source: string = 'app';
 
-  constructor(private dwhService: DwhService) { }
+  constructor(private dwhService: DwhService) {}
 
   ngOnInit(): void {
     this.date = getDate();
@@ -85,7 +84,6 @@ export class BoardComponent implements OnInit {
   }
 
   getKpi(): void {
-    this.source = 'app';
     const d: string[] = this.date.split('-');
     const month = d[1].length === 1 ? '0' + d[1] : d[1];
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
@@ -98,7 +96,6 @@ export class BoardComponent implements OnInit {
   }
 
   getKpiDwh(): void {
-    this.source = 'dwh';
     const d: string[] = this.date.split('-');
     const month = d[1].length === 1 ? '0' + d[1] : d[1];
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
@@ -110,34 +107,47 @@ export class BoardComponent implements OnInit {
     });
   }
   getTotalParc(): number {
-    return this.kpis.filter(item => item.parc)
+    return this.kpis
+      .filter((item) => item.parc)
       .reduce((total, item) => total + item.parc, 0);
   }
   getTotalActivation(): number {
-    return this.kpis.filter(item => item.activation).reduce((total, item) => total + item.activation, 0);
+    return this.kpis
+      .filter((item) => item.activation)
+      .reduce((total, item) => total + item.activation, 0);
   }
   getTotatCumulActivation(): number {
-    return this.kpis.filter(item => item.cumul_activation).reduce((total, item) => total + item.cumul_activation, 0);
+    return this.kpis
+      .filter((item) => item.cumul_activation)
+      .reduce((total, item) => total + item.cumul_activation, 0);
   }
   getTotatMttRec(): number {
-    return this.kpis.filter(item => item.mtt_rec).reduce((total, item) => total + item.mtt_rec, 0);
+    return this.kpis
+      .filter((item) => item.mtt_rec)
+      .reduce((total, item) => total + item.mtt_rec, 0);
   }
   getTotatCumulMttRec(): number {
-    return this.kpis.filter(item => item.cumul_mtt_rec).reduce((total, item) => total + item.cumul_mtt_rec, 0);
+    return this.kpis
+      .filter((item) => item.cumul_mtt_rec)
+      .reduce((total, item) => total + item.cumul_mtt_rec, 0);
   }
   getTotatCb7Jours(): number {
-    return this.kpis.filter(item => item.cb_7jours).reduce((total, item) => total + item.cb_7jours, 0);
+    return this.kpis
+      .filter((item) => item.cb_7j)
+      .reduce((total, item) => total + item.cb_7j, 0);
   }
   getTotatCb30Jours(): number {
-    return this.kpis.filter(item => item.cb_30jours).reduce((total, item) => total + item.cb_30jours, 0);
+    return this.kpis
+      .filter((item) => item.cb_30j)
+      .reduce((total, item) => total + item.cb_30j, 0);
   }
   sendSms(): void {
     const d: string[] = this.date.split('-');
     const month = d[1].length === 1 ? '0' + d[1] : d[1];
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
     const jour: string = d[2] + '-' + month + '-' + day;
-    this.dwhService.sendSms(jour, this.source).subscribe({
-      next: (data: any) => { },
+    this.dwhService.sendSms(jour).subscribe({
+      next: (data: any) => {},
     });
   }
 

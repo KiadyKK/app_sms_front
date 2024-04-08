@@ -17,7 +17,11 @@
     </div>
   </div>
 
-  <table class="table table-sm table-striped table-bordered" aria-describedby="mydesc">
+  <table
+    class="table table-sm table-striped table-bordered"
+    aria-describedby="mydesc"
+    *ngIf="kpis.length; else elseKpi"
+  >
     <thead>
       <tr>
         <th scope="col">MM/YYYY</th>
@@ -26,10 +30,10 @@
         <th scope="col">Taux CB(%)</th>
         <th scope="col">Charged base</th>
         <th scope="col">Parc</th>
+        <th scope="col">Charged base</th>
+        <th scope="col">Taux charged base</th>
         <th scope="col">Activation</th>
         <th scope="col">Cumul Act</th>
-        <!-- <th scope="col">Nbr Rec</th>
-        <th scope="col">Cumul nbr Rec</th> -->
         <th scope="col">Montant Rec</th>
         <th scope="col">Cumul Montant Rec</th>
       </tr>
@@ -40,15 +44,17 @@
         <td class="text-center">{{ kpi.mois_annee }}</td>
         <td class="text-center">{{ kpi.jour }}</td>
         <td>{{ kpi.zone }}</td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30jours/kpi.parc) }}</td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30jours) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30j/kpi.parc) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30j) }}</td>
         <td class="text-end">{{ floatNumberWithSpaces(kpi.parc) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30j) }}</td>
+        <td class="text-end">
+          {{ (kpi.cb_30j / kpi.parc).toFixed(2) }}
+        </td>
         <td class="text-end">{{ floatNumberWithSpaces(kpi.activation) }}</td>
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.cumul_activation) }}
         </td>
-        <!-- <td class="text-end">{{ floatNumberWithSpaces(kpi.nb_rec) }}</td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.cumul_nb_rec) }}</td> -->
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.mtt_rec.toFixed(2)) }}
         </td>
@@ -70,4 +76,10 @@
       </tr>
     </tbody>
   </table>
+
+  <ng-template #elseKpi
+    ><div class="card text-center no-result pt-2" *ngIf="!kpis.length">
+      Aucuns résultats
+    </div></ng-template
+  >
 </div>
