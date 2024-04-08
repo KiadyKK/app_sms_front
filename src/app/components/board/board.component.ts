@@ -75,7 +75,6 @@ const getDate = (): string => {
 export class BoardComponent implements OnInit {
   date: string = '';
   kpis: Kpi[] = [];
-  source: string = 'app';
 
   constructor(private dwhService: DwhService) {}
 
@@ -85,7 +84,6 @@ export class BoardComponent implements OnInit {
   }
 
   getKpi(): void {
-    this.source = 'app';
     const d: string[] = this.date.split('-');
     const month = d[1].length === 1 ? '0' + d[1] : d[1];
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
@@ -98,7 +96,6 @@ export class BoardComponent implements OnInit {
   }
 
   getKpiDwh(): void {
-    this.source = 'dwh';
     const d: string[] = this.date.split('-');
     const month = d[1].length === 1 ? '0' + d[1] : d[1];
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
@@ -115,7 +112,7 @@ export class BoardComponent implements OnInit {
     const month = d[1].length === 1 ? '0' + d[1] : d[1];
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
     const jour: string = d[2] + '-' + month + '-' + day;
-    this.dwhService.sendSms(jour, this.source).subscribe({
+    this.dwhService.sendSms(jour).subscribe({
       next: (data: any) => {},
     });
   }

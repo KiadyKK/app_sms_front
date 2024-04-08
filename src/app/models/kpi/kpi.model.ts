@@ -6,8 +6,9 @@ export class Kpi {
   parc: number;
   activation: number;
   cumul_activation: number;
-  nb_rec: number;
-  cumul_nb_rec: number;
+  cb_30j: number;
+  cb_7j: number;
+  cb_30jd: number;
   mtt_rec: number;
   cumul_mtt_rec: number;
 }
