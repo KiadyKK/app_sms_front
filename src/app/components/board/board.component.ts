@@ -58,7 +58,6 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
       : '';
   }
 }
-
 const getDate = (): string => {
   const now = new Date();
   const day = now.getDate() - 1;
@@ -73,12 +72,18 @@ const getDate = (): string => {
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
+  noData: boolean = false;
   date: string = '';
   kpis: Kpi[] = [];
   source: string = 'app';
 
   constructor(private dwhService: DwhService) { }
-
+  showNoData(): void {
+    this.noData = true
+  }
+  showData(): void {
+    this.noData = false
+  }
   ngOnInit(): void {
     this.date = getDate();
     this.getKpi();
@@ -92,7 +97,13 @@ export class BoardComponent implements OnInit {
     const jour: string = d[2] + '-' + month + '-' + day;
     this.dwhService.getAll(jour).subscribe({
       next: (data: any) => {
+        console.log(data)
         this.kpis = data;
+        if (this.kpis.length == 0) {
+          this.showNoData()
+        } else {
+          this.showData()
+        }
       },
     });
   }

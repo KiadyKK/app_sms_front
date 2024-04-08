@@ -16,8 +16,11 @@
       <button class="btn btn-orange btn-sm" (click)="sendSms()">Envoyer</button>
     </div>
   </div>
+  <div id="container" *ngIf="this.noData==true" class="alert alert-danger" role="alert">
+    <p>Aucun résultat</p>
+  </div>
 
-  <table class="table table-sm table-striped table-bordered" aria-describedby="mydesc">
+  <table class="table table-sm table-striped table-bordered" aria-describedby="mydesc" *ngIf='this.noData==false'>
     <thead>
       <tr>
         <th scope="col">MM/YYYY</th>
