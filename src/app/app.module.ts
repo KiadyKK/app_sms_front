@@ -29,7 +29,7 @@ import { JsonPipe } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { spinnerInterceptorProviders } from './helpers/spinner.interceptor';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { DataTableComponent } from './components/data-table/data-table.component';
+import { PutPasswordComponent } from './components/put-password/put-password.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     UserComponent,
     HistoryComponent,
     SpinnerComponent,
-    DataTableComponent,
+    PutPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,4 +66,4 @@ import { DataTableComponent } from './components/data-table/data-table.component
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
