@@ -29,6 +29,8 @@ import { JsonPipe } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { spinnerInterceptorProviders } from './helpers/spinner.interceptor';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { PutPasswordComponent } from './components/put-password/put-password.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     RdzComponent,
     UserComponent,
     HistoryComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    PutPasswordComponent,
   ],
   imports: [
     BrowserModule,

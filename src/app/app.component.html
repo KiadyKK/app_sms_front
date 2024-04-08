@@ -1,67 +1,40 @@
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark py-0 fixed-top">
-    <img
-      src="assets/images/logo.gif"
-      class="mx-2"
-      alt="Logo Orange"
-      title="Logo Orange"
-      width="35px"
-      height="35px"
-    />
+    <img src="assets/images/logo.gif" class="mx-2" alt="Logo Orange" title="Logo Orange" width="35px" height="35px" />
     <h5 class="text-light d-flex align-items-center mb-0">APP SMS 833</h5>
 
     <ul class="navbar-nav mx-auto link-group" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a
-          class="nav-link lien"
-          routerLink="board"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Tableau de bord</a
-        >
+        <a class="nav-link lien" routerLink="board" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">Tableau de bord</a>
       </li>
       <li class="nav-item ms-3">
-        <a
-          class="nav-link lien"
-          routerLink="rdz"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >RDZ</a
-        >
+        <a class="nav-link lien" routerLink="rdz" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">RDZ</a>
       </li>
       <li class="nav-item ms-3">
-        <a
-          class="nav-link lien"
-          routerLink="history"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Historique</a
-        >
+        <a class="nav-link lien" routerLink="history" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">Historique</a>
       </li>
       <li class="nav-item ms-3" *ngIf="role === 1">
-        <a
-          class="nav-link lien"
-          routerLink="user"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Utilisateur</a
-        >
+        <a class="nav-link lien" routerLink="user" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">Utilisateur</a>
       </li>
     </ul>
 
     <ul class="navbar-nav ms-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/" class="nav-link" routerLink="">{{ tri }}</a>
+      <li class="nav-item" *ngIf="role !==1">
+        <a href="" class="nav-link" routerLink="/putPassword">{{ tri }}</a>
       </li>
       <li class="nav-item d-flex align-items-center me-2">
-        <a href class="btn btn-outline-primary btn-sm" (click)="logout()"
-          >Déconnexion</a
-        >
+        <a href class="btn btn-outline-primary btn-sm" (click)="logout()">Déconnexion</a>
       </li>
     </ul>
   </nav>
 
-  <div class="body"><router-outlet></router-outlet></div>
+  <div class="body">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 <spinner></spinner>
