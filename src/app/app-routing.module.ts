@@ -6,7 +6,7 @@ import { BoardComponent } from './components/board/board.component';
 import { RdzComponent } from './components/rdz/rdz.component';
 import { UserComponent } from './components/user/user.component';
 import { HistoryComponent } from './components/history/history.component';
-
+import { PutPasswordComponent } from './components/put-password/put-password.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -28,11 +28,16 @@ const routes: Routes = [
     path: 'history',
     component: HistoryComponent,
     canActivate: [AuthGuard],
-  },
+  }, {
+    path: 'putPassword',
+    component: PutPasswordComponent,
+    canActivate: [AuthGuard]
+  }
+  ,
   { path: '', redirectTo: 'board', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
