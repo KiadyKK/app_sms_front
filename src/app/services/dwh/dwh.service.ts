@@ -25,11 +25,8 @@ export class DwhService {
     return this.http.get(apiURL + `/dwh?date=${date}`, httpOptions);
   }
 
-  sendSms(date: string, source: string): Observable<any> {
-    return this.http.get(
-      apiURL + `/send?date=${date}&source=${source}`,
-      httpOptions
-    );
+  sendSms(date: string): Observable<any> {
+    return this.http.get(apiURL + `/send?date=${date}`, httpOptions);
   }
 
   getAllZone(): Observable<any> {
