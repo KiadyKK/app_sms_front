@@ -4,7 +4,6 @@ export class Kpi {
   jour: string;
   zone: string;
   taux_cb: number;
-  charged_base: number;
   parc: number;
   activation: number;
   cumul_activation: number;
