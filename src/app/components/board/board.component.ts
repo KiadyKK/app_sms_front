@@ -137,10 +137,10 @@ export class BoardComponent implements OnInit {
     return this.kpis.filter(item => item.cumul_mtt_rec).reduce((total, item) => total + item.cumul_mtt_rec, 0);
   }
   getTotatCb7Jours(): number {
-    return this.kpis.filter(item => item.cb_7jours).reduce((total, item) => total + item.cb_7jours, 0);
+    return this.kpis.filter(item => item.cb_7j).reduce((total, item) => total + item.cb_7j, 0);
   }
   getTotatCb30Jours(): number {
-    return this.kpis.filter(item => item.cb_30jours).reduce((total, item) => total + item.cb_30jours, 0);
+    return this.kpis.filter(item => item.cb_30j).reduce((total, item) => total + item.cb_30j, 0);
   }
   sendSms(): void {
     const d: string[] = this.date.split('-');
