@@ -159,7 +159,7 @@ export class BoardComponent implements OnInit {
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
     const jour: string = d[2] + '-' + month + '-' + day;
     this.dwhService.sendSms(jour).subscribe({
-      next: (data: any) => {},
+      next: (data: any) => { },
     });
   }
 
