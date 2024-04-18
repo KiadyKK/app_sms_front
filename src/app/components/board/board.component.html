@@ -27,9 +27,9 @@
         <th scope="col">MM/YYYY</th>
         <th scope="col">Jour</th>
         <th scope="col">Zone</th>
-        <th scope="col">Parc</th>
-        <th scope="col">Charged base</th>
         <th scope="col">Taux CB(%)</th>
+        <th scope="col">Charged base</th>
+        <th scope="col">Parc</th>
         <th scope="col">Activation</th>
         <th scope="col">Cumul Act</th>
         <th scope="col">Montant Rec</th>
@@ -42,11 +42,11 @@
         <td class="text-center">{{ kpi.mois_annee }}</td>
         <td class="text-center">{{ kpi.jour }}</td>
         <td>{{ kpi.zone }}</td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.parc) }}</td>
-        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30j) }}</td>
         <td class="text-end">
           {{  ((kpi.cb_30j / kpi.parc) * 100).toFixed(2) }}
         </td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30j) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.parc) }}</td>
         <td class="text-end">{{ floatNumberWithSpaces(kpi.activation) }}</td>
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.cumul_activation) }}
