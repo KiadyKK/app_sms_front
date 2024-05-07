@@ -111,6 +111,11 @@ export class BoardComponent implements OnInit {
       .filter((item) => item.parc)
       .reduce((total, item) => total + item.parc, 0);
   }
+  getTotalDeltaParc(): number {
+    return this.kpis
+      .filter((item) => item.delta_parc)
+      .reduce((total, item) => total + item.delta_parc, 0);
+  }
   getTotalActivation(): number {
     return this.kpis
       .filter((item) => item.activation)
@@ -155,5 +160,9 @@ export class BoardComponent implements OnInit {
     let parts = x.toString().split('.');
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     return parts.join('.');
+  }
+
+  floor(x: number): number {
+    return Math.floor(x);
   }
 }

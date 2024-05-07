@@ -6,6 +6,7 @@ export class Kpi {
   taux_cb: number;
   charged_base: number;
   parc: number;
+  delta_parc: number;
   activation: number;
   cumul_activation: number;
   cb_30j: number;

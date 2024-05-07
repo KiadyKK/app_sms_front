@@ -7,9 +7,21 @@
     </div>
 
     <div class="input-group input-group-sm mb-3 ms-2 search">
-      <input class="form-control" placeholder="dd/mm/yyyy" name="date" [(ngModel)]="date" (ngModelChange)="getKpi()"
-        ngbDatepicker #d="ngbDatepicker" readonly />
-      <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+      <input
+        class="form-control"
+        placeholder="dd/mm/yyyy"
+        name="date"
+        [(ngModel)]="date"
+        (ngModelChange)="getKpi()"
+        ngbDatepicker
+        #d="ngbDatepicker"
+        readonly
+      />
+      <button
+        class="btn btn-outline-secondary bi bi-calendar3"
+        (click)="d.toggle()"
+        type="button"
+      ></button>
     </div>
 
     <div class="ms-2">
@@ -30,6 +42,7 @@
         <th scope="col">Taux CB(%)</th>
         <th scope="col">Charged base</th>
         <th scope="col">Parc</th>
+        <th scope="col">Delta Parc</th>
         <th scope="col">Activation</th>
         <th scope="col">Cumul Act</th>
         <th scope="col">Montant Rec</th>
@@ -40,35 +53,53 @@
     <tbody>
       <tr *ngFor="let kpi of kpis">
         <td class="text-center">{{ kpi.mois_annee }}</td>
-        <td class="text-center">{{ kpi.jour }}</td>
+        <td class="text-center">{{ kpi.jour | date: 'dd-MM-yyyy' }}</td>
         <td>{{ kpi.zone }}</td>
         <td class="text-end">
-          {{  ((kpi.cb_30j / kpi.parc) * 100).toFixed(2) }}
+          {{ ((kpi.cb_30j / kpi.parc) * 100).toFixed(2) }}
         </td>
         <td class="text-end">{{ floatNumberWithSpaces(kpi.cb_30j) }}</td>
         <td class="text-end">{{ floatNumberWithSpaces(kpi.parc) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(kpi.delta_parc) }}</td>
         <td class="text-end">{{ floatNumberWithSpaces(kpi.activation) }}</td>
         <td class="text-end">
           {{ floatNumberWithSpaces(kpi.cumul_activation) }}
         </td>
         <td class="text-end">
-          {{ floatNumberWithSpaces(kpi.mtt_rec.toFixed(2)) }}
+          {{ floatNumberWithSpaces(floor(kpi.mtt_rec)) }}
         </td>
         <td class="text-end">
-          {{ floatNumberWithSpaces(kpi.cumul_mtt_rec.toFixed(2)) }}
+          {{ floatNumberWithSpaces(floor(kpi.cumul_mtt_rec)) }}
         </td>
       </tr>
       <tr>
         <td class="text-center" colspan="3">Somme</td>
         <!-- <td></td>
         <td></td> -->
-        <td></td>
-        <td class="text-end">{{ floatNumberWithSpaces(getTotatCb30Jours())}}</td>
-        <td class="text-end">{{floatNumberWithSpaces(getTotalParc())}}</td>
-        <td class="text-end">{{floatNumberWithSpaces(getTotalActivation())}}</td>
-        <td class="text-end">{{floatNumberWithSpaces(getTotatCumulActivation())}}</td>
-        <td class="text-end">{{floatNumberWithSpaces(getTotatMttRec().toFixed(2))}}</td>
-        <td class="text-end">{{floatNumberWithSpaces(getTotatCumulMttRec().toFixed(2))}}</td>
+        <td class="text-end">
+          {{
+            floatNumberWithSpaces(
+              ((getTotatCb30Jours() / getTotalParc()) * 100).toFixed(2)
+            )
+          }}
+        </td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(getTotatCb30Jours()) }}
+        </td>
+        <td class="text-end">{{ floatNumberWithSpaces(getTotalParc()) }}</td>
+        <td class="text-end">{{ floatNumberWithSpaces(getTotalDeltaParc()) }}</td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(getTotalActivation()) }}
+        </td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(getTotatCumulActivation()) }}
+        </td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(floor(getTotatMttRec())) }}
+        </td>
+        <td class="text-end">
+          {{ floatNumberWithSpaces(floor(getTotatCumulMttRec())) }}
+        </td>
       </tr>
     </tbody>
   </table>
