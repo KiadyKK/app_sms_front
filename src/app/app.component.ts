@@ -10,7 +10,8 @@ import { StorageService } from './services/storage/storage.service';
 export class AppComponent {
   tri: string;
   isLoggedIn: boolean;
-  role: number
+  role: number;
+  title: string = "app_sms_front"
 
   constructor(
     private storageService: StorageService,
