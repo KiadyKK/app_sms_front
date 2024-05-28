@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Login } from 'src/app/models/login/login.model';
 import { environment } from 'src/environments/environment.development';
 
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let service: AuthService;
   let httpMock: HttpTestingController;
 
