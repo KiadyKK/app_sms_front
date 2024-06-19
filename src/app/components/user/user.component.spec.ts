@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/models/user/user.model';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-fdescribe('UserComponent', () => {
+describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
   let userService: jasmine.SpyObj<UserService>;
