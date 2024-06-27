@@ -5,7 +5,7 @@ import { PutPasswordComponent } from './put-password.component';
 import { PutPasswordService } from '../../services/putPassword/put-password.service';
 import { StorageService } from '../../services/storage/storage.service';
 
-fdescribe('PutPasswordComponent', () => {
+describe('PutPasswordComponent', () => {
   let component: PutPasswordComponent;
   let fixture: ComponentFixture<PutPasswordComponent>;
   let putPasswordService: jasmine.SpyObj<PutPasswordService>;
