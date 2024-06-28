@@ -42,7 +42,7 @@ describe('AuthService', () => {
     expect(req.request.headers.get('skip')).toBe('true');
     expect(req.request.body).toEqual(mockLoginData);
 
-    req.flush(mockResponse); // Simule une réponse HTTP
+    req.flush(mockResponse);
     
   });
 });

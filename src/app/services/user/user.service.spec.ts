@@ -18,7 +18,7 @@ describe('UserService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Vérifie qu'il n'y a pas de requêtes HTTP en attente
+    httpMock.verify(); 
   });
 
   it('should be created', () => {
@@ -38,7 +38,7 @@ describe('UserService', () => {
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
     expect(req.request.body).toEqual(mockUserData);
 
-    req.flush(mockResponse); // Simule une réponse HTTP
+    req.flush(mockResponse); 
   });
 
   it('should send a GET request to retrieve all users by name', () => {
@@ -53,7 +53,7 @@ describe('UserService', () => {
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
 
-    req.flush(mockResponse); // Simule une réponse HTTP
+    req.flush(mockResponse);
   });
 
   it('should send a DELETE request to remove a user by id', () => {
@@ -68,6 +68,6 @@ describe('UserService', () => {
     expect(req.request.method).toBe('DELETE');
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
 
-    req.flush(mockResponse); // Simule une réponse HTTP
+    req.flush(mockResponse); 
   });
 });

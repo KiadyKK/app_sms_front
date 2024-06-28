@@ -7,9 +7,7 @@ import {
 import { Kpi } from './../../models/kpi/kpi.model';
 import { DwhService } from './../../services/dwh/dwh.service';
 
-/**
- * This Service handles how the date is represented in scripts i.e. ngModel.
- */
+
 @Injectable()
 export class CustomAdapter extends NgbDateAdapter<string> {
   readonly DELIMITER = '-';
@@ -33,9 +31,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
   }
 }
 
-/**
- * This Service handles how the date is rendered and parsed from keyboard i.e. in the bound input field.
- */
+
 @Injectable()
 export class CustomDateParserFormatter extends NgbDateParserFormatter {
   readonly DELIMITER = '/';

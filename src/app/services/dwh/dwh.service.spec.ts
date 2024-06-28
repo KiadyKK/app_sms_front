@@ -39,7 +39,7 @@ describe('DwhService', () => {
     const req = httpMock.expectOne(`${apiURL}?date=${testDate}`);
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
-    req.flush({}); // Simule une réponse vide
+    req.flush({}); 
   });
 
   it('should call getAllDwh with correct URL', () => {
@@ -49,7 +49,7 @@ describe('DwhService', () => {
     const req = httpMock.expectOne(`${apiURL}/dwh?date=${testDate}`);
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
-    req.flush({}); // Simule une réponse vide
+    req.flush({});
   });
 
   it('should call sendSms with correct URL', () => {
@@ -59,7 +59,7 @@ describe('DwhService', () => {
     const req = httpMock.expectOne(`${apiURL}/send?date=${testDate}`);
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
-    req.flush({}); // Simule une réponse vide
+    req.flush({}); 
   });
 
   it('should call getAllZone with correct URL', () => {
@@ -68,7 +68,7 @@ describe('DwhService', () => {
     const req = httpMock.expectOne(`${apiURL}/zone`);
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
-    req.flush({}); // Simule une réponse vide
+    req.flush({});
   });
 
   it('should call getHistoric with correct URL', () => {
@@ -78,6 +78,6 @@ describe('DwhService', () => {
     const req = httpMock.expectOne(`${apiURL}/historic?date=${testDate}`);
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
-    req.flush({}); // Simule une réponse vide
+    req.flush({});
   });
 });

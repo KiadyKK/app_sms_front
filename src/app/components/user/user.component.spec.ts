@@ -25,7 +25,7 @@ describe('UserComponent', () => {
     userService = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
 
     userService.getAll.and.returnValue(of([]));
-    fixture.detectChanges(); // initial binding
+    fixture.detectChanges(); 
   });
 
   it('should create', () => {
@@ -48,7 +48,7 @@ describe('UserComponent', () => {
   });
 
   it('should add a user', () => {
-    const user = { nom: 'Test', prenom: 'User', email: 'test@example.com', tel: '1234567890', tri: 'ABC' };
+    const user = { nom: 'Test', prenom: 'User', email: 'test@example.com', tel: '0323203232', tri: 'ABC' };
     component.form.setValue(user);
     userService.addUser.and.returnValue(of(user));
 
@@ -57,7 +57,7 @@ describe('UserComponent', () => {
   });
 
   it('should reset form after adding user', () => {
-    const user = { nom: 'Test', prenom: 'User', email: 'test@example.com', tel: '1234567890', tri: 'ABC' };
+    const user = { nom: 'Test', prenom: 'User', email: 'test@example.com', tel: '0323203232', tri: 'ABC' };
     component.form.setValue(user);
     userService.addUser.and.returnValue(of(user));
 

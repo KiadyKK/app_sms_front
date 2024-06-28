@@ -41,6 +41,6 @@ describe('PutPasswordService', () => {
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
     expect(req.request.body).toEqual(mockData);
 
-    req.flush({ success: true }); // Simuler une réponse de succès du serveur
+    req.flush({ success: true }); 
   });
 });

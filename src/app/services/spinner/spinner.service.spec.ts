@@ -31,7 +31,7 @@ describe('SpinnerService', () => {
   });
 
   it('should decrement numberOfRequests and set showSpinner to false on "minus" state when numberOfRequests is 1', () => {
-    service.numberOfRequests = 1; // Set initial state
+    service.numberOfRequests = 1; 
     service.handleRequest('minus');
     expect(service.numberOfRequests).toBe(0);
     service.showSpinner.subscribe(value => {

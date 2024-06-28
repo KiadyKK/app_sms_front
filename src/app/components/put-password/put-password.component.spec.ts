@@ -30,7 +30,7 @@ describe('PutPasswordComponent', () => {
     component = fixture.componentInstance;
     putPasswordService = TestBed.inject(PutPasswordService) as jasmine.SpyObj<PutPasswordService>;
     storageService = TestBed.inject(StorageService) as jasmine.SpyObj<StorageService>;
-    storageService.getItem.and.returnValue('TRI'); // Mocking storageService.getItem
+    storageService.getItem.and.returnValue('TRI'); 
     fixture.detectChanges();
   });
 

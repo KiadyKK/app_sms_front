@@ -14,7 +14,7 @@ export class PutPasswordComponent implements OnInit {
   trigramme: string
   successMessage: boolean = false
   errorMessage: boolean = false;
-  // SuccesfulPassword: boolean
+  
   constructor(private formBuilder: FormBuilder,
     private service: PutPasswordService,
     private storageService: StorageService) { }
