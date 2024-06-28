@@ -7,9 +7,7 @@ import {
 import { Kpi } from './../../models/kpi/kpi.model';
 import { DwhService } from './../../services/dwh/dwh.service';
 
-/**
- * This Service handles how the date is represented in scripts i.e. ngModel.
- */
+
 @Injectable()
 export class CustomAdapter extends NgbDateAdapter<string> {
   readonly DELIMITER = '-';
@@ -33,9 +31,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
   }
 }
 
-/**
- * This Service handles how the date is rendered and parsed from keyboard i.e. in the bound input field.
- */
+
 @Injectable()
 export class CustomDateParserFormatter extends NgbDateParserFormatter {
   readonly DELIMITER = '/';
@@ -58,7 +54,6 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
       : '';
   }
 }
-
 const getDate = (): string => {
   const now = new Date();
   const day = now.getDate() - 1;
@@ -73,10 +68,17 @@ const getDate = (): string => {
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
+  noData: boolean = false;
   date: string = '';
   kpis: Kpi[] = [];
 
-  constructor(private dwhService: DwhService) {}
+  constructor(private dwhService: DwhService) { }
+  showNoData(): void {
+    this.noData = true
+  }
+  showData(): void {
+    this.noData = false
+  }
 
   ngOnInit(): void {
     this.date = getDate();
@@ -90,7 +92,13 @@ export class BoardComponent implements OnInit {
     const jour: string = d[2] + '-' + month + '-' + day;
     this.dwhService.getAll(jour).subscribe({
       next: (data: any) => {
+        console.log(data)
         this.kpis = data;
+        if (this.kpis.length == 0) {
+          this.showNoData()
+        } else {
+          this.showData()
+        }
       },
     });
   }
@@ -152,7 +160,7 @@ export class BoardComponent implements OnInit {
     const day = d[0].length === 1 ? '0' + d[0] : d[0];
     const jour: string = d[2] + '-' + month + '-' + day;
     this.dwhService.sendSms(jour).subscribe({
-      next: (data: any) => {},
+      next: (data: any) => { },
     });
   }
 

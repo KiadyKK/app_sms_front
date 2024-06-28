@@ -10,7 +10,8 @@ import { StorageService } from './services/storage/storage.service';
 export class AppComponent {
   tri: string;
   isLoggedIn: boolean;
-  role: number
+  role: number;
+  title: string = "app_sms_front";
 
   constructor(
     private storageService: StorageService,
@@ -29,12 +30,16 @@ export class AppComponent {
     this.bnIdle.startWatching(3600).subscribe((isTimedOut: boolean) => {
       if (isTimedOut) {
         this.logout();
-        location.reload();
+        this.reloadPage();
       }
     });
   }
 
   logout(): void {
     this.storageService.clean();
+  }
+
+  reloadPage(): void {
+    location.reload();
   }
 }

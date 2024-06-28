@@ -5,7 +5,6 @@
         <i class="bi bi-arrow-repeat"></i>
       </button>
     </div>
-
     <div class="input-group input-group-sm mb-3 ms-2 search">
       <input
         class="form-control"
@@ -23,17 +22,14 @@
         type="button"
       ></button>
     </div>
-
     <div class="ms-2">
       <button class="btn btn-orange btn-sm" (click)="sendSms()">Envoyer</button>
     </div>
   </div>
-
-  <table
-    class="table table-sm table-striped table-bordered"
-    aria-describedby="mydesc"
-    *ngIf="kpis.length; else elseKpi"
-  >
+  <div id="container" *ngIf="this.noData==true" class="alert alert-danger" role="alert">
+    <p>Aucun résultat</p>
+  </div>
+  <table class="table table-sm table-striped table-bordered" aria-describedby="mydesc" *ngIf="this.noData==false">
     <thead>
       <tr>
         <th scope="col">MM/YYYY</th>
@@ -103,10 +99,4 @@
       </tr>
     </tbody>
   </table>
-
-  <ng-template #elseKpi
-    ><div class="card text-center no-result pt-2" *ngIf="!kpis.length">
-      Aucuns résultats
-    </div></ng-template
-  >
 </div>
