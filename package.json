@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port 4201",
+    "prebuild": "ng test --watch=false --browsers=ChromeHeadless",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
